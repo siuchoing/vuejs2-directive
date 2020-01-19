@@ -12,11 +12,14 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <h1>Custom Directives</h1>
             <!-- pass an argument called :background-->
-                <p v-highlight:background="'red'">Color this</p>
-                <p v-highlight:background.delayed="'red'">Color this (delayed)</p>
-                <p v-highlight="'red'">Color this</p>
-
-                <p v-local-highlight:background.delayed="'blue'">Color this (delayed)</p>
+                <section title="global-directive">
+                    <p v-highlight:background="'red'">Color this</p>
+                    <p v-highlight:background.delayed="'red'">Color this (delayed)</p>
+                    <p v-highlight="'red'">Color this</p>
+                </section>
+                <section title="local-directive">
+                    <p v-local-highlight:background.delayed="'blue'">Color this (delayed)</p>
+                </section>
             </div>
         </div>
     </div>
