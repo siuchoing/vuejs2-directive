@@ -5,7 +5,12 @@ import App from './App.vue'
 Vue.directive('highlight', {
   bind(el, binding, vnode) {  // one directive is attached
     //el.style.backgroundColor = 'green';
-    el.style.backgroundColor = binding.value;
+    //el.style.backgroundColor = binding.value;
+    if (binding.arg == 'background') {
+      el.style.backgroundColor = binding.value; // default bg color
+    } else {
+      el.style.color = binding.value;
+    }
   }
 });
 
