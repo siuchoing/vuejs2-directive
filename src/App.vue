@@ -19,7 +19,7 @@
                 </section>
                 <section title="local-directive">
                     <p v-local-highlight:background.delayed="'blue'">Color this (delayed)</p>
-                    <p v-local-highlight:background.delayed.blink="'red'">Color this (delayed)</p>
+                    <p v-local-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">Color this (delayed)</p>
                 </section>
             </div>
         </div>
@@ -36,8 +36,8 @@
                         delay = 3000;
                     }
                     if (binding.modifiers['blink']) {
-                        let mainColor = binding.value;
-                        let secondColor = 'orange';
+                        let mainColor = binding.value.mainColor;
+                        let secondColor = binding.value.secondColor;
                         let currentColor = mainColor;
                         setTimeout(() => {
                             setInterval(() => {
@@ -47,14 +47,14 @@
                                 } else {
                                     el.style.color = currentColor;
                                 }
-                            }, 1000);
+                            }, binding.value.delay);
                         }, delay);
                     } else {
                         setTimeout(() => {
                             if (binding.arg == 'background') {
-                                el.style.backgroundColor = binding.value; // default bg color
+                                el.style.backgroundColor = binding.value.mainColor; // default bg color
                             } else {
-                                el.style.color = binding.value;
+                                el.style.color = binding.value.mainColor;
                             }
                         }, delay);
                     }
