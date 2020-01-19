@@ -5,7 +5,7 @@
                 <h1>Directives Exercise</h1>
                 <!-- Exercise -->
                 <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
-                <button v-customOn:click="clicked" class="btn btn-primary">Click Me</button>x
+                <button v-customOn:click="clicked" class="btn btn-primary">Click Me</button>
                 <hr>
                 <div
                         style="width: 100px; height: 100px; background-color: lightgreen"
