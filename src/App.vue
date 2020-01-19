@@ -19,7 +19,8 @@
                 </section>
                 <section title="local-directive">
                     <p v-local-highlight:background.delayed="'blue'">Color this (delayed)</p>
-                    <p v-local-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">Color this (delayed)</p>
+                    <p v-local-highlight:background.delayed.blink="'red'">Color this (delayed)</p>
+                    <p v-local-complex-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">Color this (delayed but faster)</p>
                 </section>
             </div>
         </div>
@@ -30,6 +31,38 @@
     export default {
         directives: {
             'local-highlight': {
+                bind(el, binding, vnode) {
+                    var delay = 0;
+                    if (binding.modifiers['delayed']) {
+                        delay = 3000;
+                    }
+                    if (binding.modifiers['blink']) {
+                        let mainColor = binding.value;
+                        let secondColor = 'orange';
+                        let currentColor = mainColor;
+                        setTimeout(() => {
+                            setInterval(() => {
+                                currentColor == secondColor ? currentColor = mainColor : currentColor = secondColor;
+                                if (binding.arg == 'background') {
+                                    el.style.backgroundColor = currentColor; // default bg color
+                                } else {
+                                    el.style.color = currentColor;
+                                }
+                            }, 1000);
+                        }, delay);
+                    } else {
+                        setTimeout(() => {
+                            if (binding.arg == 'background') {
+                                el.style.backgroundColor = binding.value; // default bg color
+                            } else {
+                                el.style.color = binding.value;
+                            }
+                        }, delay);
+                    }
+
+                }
+            },
+            'local-complex-highlight': {
                 bind(el, binding, vnode) {
                     var delay = 0;
                     if (binding.modifiers['delayed']) {
