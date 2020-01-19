@@ -13,6 +13,7 @@
                 <h1>Custom Directives</h1>
             <!-- pass an argument called :background-->
                 <p v-highlight:background="'red'">Color this</p>
+                <p v-highlight:background.delayed="'red'">Color this (delayed)</p>
                 <p v-highlight="'red'">Color this</p>
             </div>
         </div>
